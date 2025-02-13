@@ -23,11 +23,13 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
-              }
+                "input": "public, rc/assets"
+              },
+              "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "font-awesome/css/font-awesome.css"
             ],
             "scripts": []
           },
