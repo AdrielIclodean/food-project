@@ -1,56 +1,58 @@
 import { Injectable } from '@angular/core';
 import { Food } from '../../shared/models/Food';
-import { Tag } from '../../shared/models/Tag';
+import { DynamoDbService } from '../aws/DynamoDb.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FoodService {
-  getFoodById(id: number): Food {
-    //put the ! at the end so that we make sure this function will not return undefined
-    return this.getAll().find(food => food.id == id)!;
+  foods: Food[] = [];
+
+  getFoodById(id: number): Food | null {
+    return this.foods.find(food => food.id == id)!;
+
   }
 
   getAllBySearchTerm(searchTerm: string): Food[] {
-    return this.getAll().filter(food => food.name.toLowerCase().includes(searchTerm.toLowerCase()))
+    return this.foods.filter(food => food.name.toLowerCase().includes(searchTerm.toLowerCase()))
   }
 
-  getAllTags():Tag[]{
-    return [
-      { name: 'All', count: 14 },
-      { name: 'Fastfood', count: 4 },
-      { name: 'Pizza', count: 2 },
-      { name: 'Lunch', count: 3 },
-      { name: 'Slow Food', count: 1 },
-      { name: 'Hamburger', count: 1 },
-      { name: 'Fry', count: 1 },
-      { name: 'Soup', count: 1 },
-    ];
-  }
 
   getAllByTag(tag: string): Food[] {
     if (tag == "All") {
-      return this.getAll();
+      return this.foods;
     }
 
-    return this.getAll()
-      .filter(food => food.tags?.includes(tag))
+    //doing to lowercase so that we match
+    return this.foods.filter(food => food.tags?.find(tg => tg.toLowerCase().includes(tag.toLowerCase())));
   }
 
-  constructor() { }
+  constructor(private dataService: DynamoDbService) { }
 
-  getAll(): Food[] {
+  loadFoods(foods: Food[]): void {
+    if (this.foods.length <= 0) {
+      this.dataService.getAllFoods()
+        .then(data => {
+          foods = data;
+          console.log('Fetched foods:', this.foods);
+        })
+        .catch(error => {
+          console.error('Error loading foods:', error);
+        });
+    }
+  }
+
+  getAllStatic(): Food[] {
     return [
-
       {
         id: 1,
         name: "Pizza CuceVreitu",
         price: 50,
         favorite: true,
         stars: 5,
-        imageurl: '/assets/images/food-6.png',
+        imageUrl: '/assets/images/food-6.png',
         origins: ["European"],
-        tags:["Pizza", "Fastfood"],
+        tags: ["Pizza", "Fastfood"],
         cookTime: "30mins"
       },
 
@@ -60,10 +62,10 @@ export class FoodService {
         price: 40,
         favorite: true,
         stars: 5,
-        imageurl: '/assets/images/food-2.png',
+        imageUrl: '/assets/images/food-2.png',
         origins: ["European"],
         cookTime: "1 hour",
-        tags:["Slow Food"]
+        tags: ["Slow Food"]
       },
 
       {
@@ -72,7 +74,7 @@ export class FoodService {
         price: 10,
         favorite: false,
         stars: 4,
-        imageurl: '/assets/images/food-3.png',
+        imageUrl: '/assets/images/food-3.png',
         origins: ["European"],
         cookTime: "1 hour",
         tags: ['Fastfood', 'Sweet', "Fry"]
@@ -84,7 +86,7 @@ export class FoodService {
         price: 30,
         favorite: true,
         stars: 3,
-        imageurl: '/assets/images/food-4.png',
+        imageUrl: '/assets/images/food-4.png',
         origins: ["European", "Germany"],
         cookTime: "30-45mins",
         tags: ['Fastfood', 'Hamburger']
@@ -96,10 +98,10 @@ export class FoodService {
         price: 20,
         favorite: false,
         stars: 2,
-        imageurl: '/assets/images/food-5.png',
+        imageUrl: '/assets/images/food-5.png',
         origins: ["European"],
         cookTime: "15-30mins",
-        tags:["Soup"]
+        tags: ["Soup"]
       },
 
       {
@@ -108,9 +110,9 @@ export class FoodService {
         price: 30,
         favorite: false,
         stars: 1,
-        imageurl: '/assets/images/food-1.png',
+        imageUrl: '/assets/images/food-1.png',
         origins: ["European"],
-        tags:["Pizza", "Fastfood"],
+        tags: ["Pizza", "Fastfood"],
         cookTime: "30mins"
       },
 

@@ -14,28 +14,26 @@ import { NotFoundComponent } from "../not-found/not-found.component";
   templateUrl: './food-page-detail.component.html',
   styleUrl: './food-page-detail.component.css'
 })
-export class FoodPageDetailComponent implements OnInit{
-  food!: Food;
-  
-  constructor(private foodService:FoodService, 
-    private activateRoute:ActivatedRoute,
-  private cartService:CartService,
-  private router:Router
+export class FoodPageDetailComponent implements OnInit {
+  food!: Food | null;
 
-){
+  constructor(private foodService: FoodService,
+    private activateRoute: ActivatedRoute,
+    private cartService: CartService,
+    private router: Router
 
-  }
+  ) { }
 
   ngOnInit(): void {
     this.activateRoute.params.subscribe(
       params => {
-        if(params['id'])
-          this.food = this.foodService.getFoodById(params['id']);  
+        if (params['id'])
+          this.food = this.foodService.getFoodById(params['id']);
       }
     )
   }
 
-  addToCart(){
+  addToCart() {
     this.cartService.addToCart(this.food);
     this.router.navigateByUrl("/cart");
   }

@@ -13,9 +13,7 @@ export class SearchComponent implements OnInit {
 
   searchTerm: String = "";
 
-
   constructor(private route: ActivatedRoute, private router: Router) {
-
   }
 
   ngOnInit(): void {
@@ -30,6 +28,10 @@ export class SearchComponent implements OnInit {
     if (this.searchTerm) {
       // just route to search with the new param that was binded
       this.router.navigateByUrl('/search/' + this.searchTerm);
+    }
+
+    if (this.searchTerm == '') {
+      this.router.navigateByUrl('/');
     }
   }
 
