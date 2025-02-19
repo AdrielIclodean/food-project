@@ -1,0 +1,14 @@
+<!-- 
+This pagination can be used like the following: 
+<app-pagination [currentPage]="1" [limit]="2" [total]="20" ></app-pagination> 
+
+Since we cannot do a query in Dynamodb for count of items, we cannot use this pagination
+-->
+<ul class="paginagion">
+    <li *ngFor="let page of pages" [ngClass]="{'page-item': true, active: currentPage === page}"
+        (click)="changePage.emit(page)">
+        <span class="page-link">
+            {{ page }}
+        </span>
+    </li>
+</ul>

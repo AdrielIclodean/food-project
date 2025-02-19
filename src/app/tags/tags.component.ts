@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Tag } from '../shared/models/Tag';
-import { FoodService } from '../services/food/food.service';
+import { CarService } from '../services/car/car.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { DynamoDbService } from '../services/aws/DynamoDb.service';
@@ -14,24 +14,24 @@ import { DynamoDbService } from '../services/aws/DynamoDb.service';
 export class TagsComponent implements OnInit {
 
   @Input()
-  foodPageTags?: string[];
+  carPageTags?: string[];
 
   @Input()
   justifyContent: string = 'center';
 
   tags: Tag[] = [];
 
-  constructor(private foodService: FoodService,
+  constructor(private carService: CarService,
     private dynamoDbS: DynamoDbService
   ) { }
 
   ngOnInit(): void {
-    if (!this.foodPageTags)
+    if (!this.carPageTags)
       this.loadAllTags();
   }
 
   loadAllTags() {
-    const map = this.foodService.foods.flatMap(food => food.tags).reduce(
+    const map = this.carService.cars.flatMap(car => car.tags).reduce(
       (acc, e) => acc.set(e, (acc.get(e) || 0) + 1), new Map()
     )
 
@@ -53,9 +53,9 @@ export class TagsComponent implements OnInit {
   }
 
   loadAllTagsFromDynamoDb() {
-    this.dynamoDbS.getAllFoods()
+    this.dynamoDbS.getAllCars()
       .then(data => {
-        const map = data.flatMap(food => food.tags).reduce(
+        const map = data.flatMap(car => car.tags).reduce(
           (acc, e) => acc.set(e, (acc.get(e) || 0) + 1), new Map()
         )
 
@@ -70,7 +70,7 @@ export class TagsComponent implements OnInit {
         console.log('Fetched tags:', map);
       })
       .catch(error => {
-        console.error('Error loading foods:', error);
+        console.error('Error loading cars:', error);
       });
   }
 }

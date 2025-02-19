@@ -1,44 +1,44 @@
 <app-not-found
-[visible]="!food"
-resetLinkText="Go to foods"
+[visible]="!car"
+resetLinkText="Go to cars"
 notFoundMesssage="Product not found"
 ></app-not-found>
-<div *ngIf="food" class="container">
-    <img [src]="food.imageUrl" [alt]="food.name">
+<div *ngIf="car" class="container">
+    <img [src]="car.imageUrl" [alt]="car.name">
 
     <div class="details">
         <div class="header">
             <span class="name">
-                {{food.name}}
+                {{car.name}}
             </span>
 
-            <span class="favorite {{food.favorite? '': 'not' }}">
+            <span class="favorite {{car.favorite? '': 'not' }}">
                 ♥️
             </span>
         </div>
 
         <div class="rating">
-            <app-star-rating [rating]="food.stars"></app-star-rating>
+            <app-star-rating [rating]="car.stars"></app-star-rating>
         </div>
 
         <div class="origins">
-            <span *ngFor="let origin of food.origins">
+            <span *ngFor="let origin of car.origins">
                 {{origin}}
             </span>
         </div>
 
         <div class="tags">
-            <app-tags [foodPageTags]="food.tags" justifyContent="start"></app-tags>
+            <app-tags [carPageTags]="car.tags" justifyContent="start"></app-tags>
         </div>
 
-        <div class="cook-time">
+        <div class="max-speed">
             <span>
-                Time to cook about <strong>{{food.cookTime}}</strong>
+                Max speed <strong>{{car.maxSpeed}}</strong>
             </span>
         </div>
 
         <div class="price">
-            <span>{{ food.price | currency}}</span>
+            <span>{{ car.priceString }}</span>
         </div>
 
         <button (click)="addToCart()">Add to Cart</button>

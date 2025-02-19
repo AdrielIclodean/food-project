@@ -4,9 +4,9 @@
         {{tag.name }}({{tag.count}})
     </a>
 </div>
-<div *ngIf="foodPageTags" [style.justifyContent] = "justifyContent">
+<div *ngIf="carPageTags" [style.justifyContent] = "justifyContent">
     
-    <a *ngFor="let tagName of foodPageTags" routerLink="/tag/{{tagName}}"> 
+    <a *ngFor="let tagName of carPageTags" routerLink="/tag/{{tagName}}"> 
         {{tagName }}
     </a>
 </div>

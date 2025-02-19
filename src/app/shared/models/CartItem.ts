@@ -1,17 +1,17 @@
-import { Food } from "./Food";
+import { Car } from "./Car";
 
 export class CartItem{
 
-    food:Food;
+    car:Car;
     quantity:number = 1;
     
-    constructor(food:Food){
-        this.food = food;
+    constructor(car:Car){
+        this.car = car;
     }
 
     // getter function
     get price():number{
-        return this.food.price * this.quantity;
+        return this.car.price * this.quantity;
     }
 
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Food } from '../shared/models/Food';
-import { FoodService } from '../services/food/food.service';
+import { Car } from '../shared/models/Car';
+import { CarService as CarService } from '../services/car/car.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StarRatingComponent } from '../star-rating/star-rating.component';
 import { TagsComponent } from "../tags/tags.component";
@@ -9,15 +9,15 @@ import { CartService } from '../services/cart/cart.service';
 import { NotFoundComponent } from "../not-found/not-found.component";
 
 @Component({
-  selector: 'app-food-page-detail',
+  selector: 'app-car-page-detail',
   imports: [StarRatingComponent, TagsComponent, CommonModule, NotFoundComponent],
-  templateUrl: './food-page-detail.component.html',
-  styleUrl: './food-page-detail.component.css'
+  templateUrl: './car-page-detail.component.html',
+  styleUrl: './car-page-detail.component.css'
 })
-export class FoodPageDetailComponent implements OnInit {
-  food!: Food | null;
+export class CarPageDetailComponent implements OnInit {
+  car!: Car | null;
 
-  constructor(private foodService: FoodService,
+  constructor(private carService: CarService,
     private activateRoute: ActivatedRoute,
     private cartService: CartService,
     private router: Router
@@ -28,13 +28,13 @@ export class FoodPageDetailComponent implements OnInit {
     this.activateRoute.params.subscribe(
       params => {
         if (params['id'])
-          this.food = this.foodService.getFoodById(params['id']);
+          this.car = this.carService.getCarById(params['id']);
       }
     )
   }
 
   addToCart() {
-    this.cartService.addToCart(this.food);
+    this.cartService.addToCart(this.car);
     this.router.navigateByUrl("/cart");
   }
 

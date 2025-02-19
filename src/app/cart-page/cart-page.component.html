@@ -6,11 +6,11 @@ resetLinkText="Go to Homepage"
     <ul>
         <li *ngFor="let cartItem of cart.items">
             <div>
-                <img [src]="cartItem.food.imageUrl" [alt]="cartItem.food.name">
+                <img [src]="cartItem.car.imageUrl" [alt]="cartItem.car.name">
             </div>
 
-            <div><a routerLink="/food/{{cartItem.food.id}}">
-                    {{ cartItem.food.name}}
+            <div><a routerLink="/car/{{cartItem.car.id}}">
+                    {{ cartItem.car.name}}
                 </a></div>
 
             <div class="quantity">
@@ -28,7 +28,7 @@ resetLinkText="Go to Homepage"
     </ul>
     <div class="checkout">
         <div>
-            <div class="foods-count">{{cart.items.length}}</div>
+            <div class="cars-count">{{cart.items.length}}</div>
             <div class="total-items-count">{{ cart.totalItemsCount }} </div>
             <div class="total-price">{{cart.totalPrice | currency}}</div>
         </div>

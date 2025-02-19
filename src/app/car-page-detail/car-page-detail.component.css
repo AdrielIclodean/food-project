@@ -64,12 +64,11 @@ img{
     background-color: aliceblue;
 }
 
-.details .cook-time{
+.details .max-speed{
     margin-top: 1rem;
 }
 
-.details .cook-time span{
-    padding: .6rem;
+.details .max-speed span{
     border-radius: 10rem;
     font-size: 1.3rem;
 }
@@ -81,7 +80,7 @@ img{
 }
 
 .details .price::before{
-    content: "Price:";
+    content: "Price: ";
 }
 
 .details button{

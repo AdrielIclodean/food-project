@@ -108,7 +108,7 @@ ul .remove-button:hover{
     align-items: flex-start;
 }
 
-.checkout .foods-count{
+.checkout .cars-count{
     margin-bottom:1.5rem ;
 }
 
@@ -116,7 +116,7 @@ ul .remove-button:hover{
     margin-bottom:1.5rem ;
 }
 
-.checkout .foods-count::before{
+.checkout .cars-count::before{
 content: "Items Count: ";
 color: grey;
 }

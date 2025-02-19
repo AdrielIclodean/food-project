@@ -25,13 +25,13 @@ export class CartPageComponent {
   }
 
   removeFromCart(cartItem:CartItem){
-    this.cartService.removeFromCart(cartItem.food.id);
+    this.cartService.removeFromCart(cartItem.car.id);
     this.setCart();
   }
 
   changeQuantity(cartItem:CartItem, quantityInString:string){
     const quantity = parseInt(quantityInString);
-    this.cartService.changeQuantity(cartItem.food.id, quantity);
+    this.cartService.changeQuantity(cartItem.car.id, quantity);
 
     this.setCart();
   }

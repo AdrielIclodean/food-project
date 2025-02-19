@@ -1,35 +1,36 @@
 <app-search></app-search>
 <app-tags></app-tags>
-<app-not-found [visible]="!foods || foods.length <=0" resetLinkText="Reset Search"></app-not-found>
+<app-not-found [visible]="!cars || cars.length <=0" resetLinkText="Reset Search"></app-not-found>
 <ul>
-    <li *ngFor="let food of foods">
-        <a routerLink="/food/{{food.id}}">
-            <img src="{{ food.imageUrl }}" alt="">
+    <li *ngFor="let car of cars">
+        <a routerLink="/car/{{car.id}}">
+            <img src="{{ car.imageUrl }}" alt="">
             <div class="content">
                 <div class="name">
-                    {{ food.name }}
+                    {{ car.name }}
                 </div>
-                <span class="favorite {{ food.favorite? '':'not'}}">❤</span>
+                <span class="favorite {{ car.favorite? '':'not'}}">❤</span>
                 <div class="stars">
-                    <app-star-rating [rating]="food.stars"></app-star-rating>
+                    <app-star-rating [rating]="car.stars"></app-star-rating>
                 </div>
 
                 <div class="product-item-footer">
                     <div class="origins">
-                        <span *ngFor="let origin of food.origins">
+                        <span *ngFor="let origin of car.origins">
                             {{ origin }}
                         </span>
                     </div>
-                    <div class="cook-time">
-                        <span>⏲️</span>
-                        {{ food.cookTime }}
+                    <div class="maxSpeed">
+                        <span>🏎️</span>
+                        {{ car.maxSpeed }}
                     </div>
                 </div>
 
                 <div class="price"><span>
-                        {{ food.price | currency}}
+                        {{ car.priceString }}
                     </span></div>
             </div>
         </a>
     </li>
 </ul>
+<app-pagination-with-arrows [limit]="pageLimit"></app-pagination-with-arrows>

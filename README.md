@@ -1,4 +1,4 @@
-# FoodProject
+# CarsProject
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.6.
 
@@ -57,3 +57,44 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+# AWS Integration
+Besides all the angular components that were created, I integrated with AWS services
+- for authenticating the service, I used AWS Cognito:
+    1. Created a new User Pool
+    2. On this pool I created a new App client
+    3. I also created a new Identity pool
+- For storing all the data I used DynamoDB:
+    1. Create a table named Cars:
+        - partition key: name(String), for now no sorting key required
+    2. add some entries like:
+    {
+  "name": {
+    "S": "Ferrari F80"
+  },
+  "maxSpeed": {
+    "S": "217.5 miles/hour"
+  },
+  "id": {
+    "N": "1"
+  },
+  "imageUrl": {
+    "S": "https://cars-images-b.s3.eu-central-1.amazonaws.com/ferrari-F80.png"
+  },
+  "price": {
+    "S": "3.6 Million"
+  },
+  "stars": {
+    "N": "5"
+  },
+  "tags": {
+    "L": [
+      {
+        "S": "Fast"
+      },
+      {
+        "S": "Costly"
+      }
+    ]
+  }
+}

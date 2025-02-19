@@ -28,6 +28,9 @@ li a:hover{
     padding: .5rem 1rem;
     position: relative;
 }
+.content .name{
+    padding-right: 1rem;
+}
 
 .favorite{
     position:absolute;

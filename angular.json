@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "food-project": {
+    "car-project": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/food-project",
+            "outputPath": "dist/car-project",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -61,10 +61,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "food-project:build:production"
+              "buildTarget": "car-project:build:production"
             },
             "development": {
-              "buildTarget": "food-project:build:development"
+              "buildTarget": "car-project:build:development"
             }
           },
           "defaultConfiguration": "development"
